@@ -8,12 +8,12 @@ const PHONE_LINK = '+2348100236403';
 const waLink = (message = 'Hello Nora Home Service Spa, I would like to make a booking enquiry.') => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
 
 const reviews = [
-  'I like having my massage done during this weather… very relaxing and strong now. Thanks for your special magical touches.',
-  'Excellent service! Professional, relaxing, and truly worth it. I’ll definitely be booking again with Nora Home Service Spa.',
-  'Had a very good experience getting massage from Nora mobile spa. The therapist understood the assignment. She was so nice.',
-  'Very professional and organized home service therapists I got, staff was kind and respectful. Will definitely be requesting again.',
-  'My experience with Nora spa was great. The massage was a great relief.',
-  'In my opinion Nora spa has the best massagers around.'
+  { name: 'Johnson segun', rating: 5, text: 'I like having my massage done during this weather… very relaxing and strong now. Thanks for your special magical touches.' },
+  { name: 'Mis Martha', rating: 5, text: 'Excellent service! Professional, relaxing, and truly worth it. I’ll definitely be booking again with Nora Home Service Spa.' },
+  { name: 'Francis Orji', rating: 5, text: 'Had a very good experience getting massage from Nora mobile spa. The therapist understood the assignment. She was so nice (Joy).' },
+  { name: 'Abeekya Mavis', rating: 5, text: 'Very professional and organized home service therapists I got, staff was kind and respectful. Will definitely be requesting again and will highly recommend.' },
+  { name: 'Uchenna Chukwu', rating: 5, text: 'My experience with Nora spa was great. The massage was a great relief.' },
+  { name: 'Shofolahan Gbolahan', rating: 5, text: 'In my opinion Nora spa has the best massagers around.' }
 ];
 
 function usePageEffects(title, description) {
@@ -96,7 +96,7 @@ function SectionHeading({ eyebrow, title, children, centered = false }) {
 
 function ReviewCards({ limit }) {
  const list = typeof limit === 'number' ? reviews.slice(0, limit) : reviews;
- return <div className="review-grid">{list.map((text, i) => <article className="review-card" key={text} data-reveal style={{'--delay': `${(i % 3) * 90}ms`}}><div className="review-top"><span className="quote-mark">“</span><span className="review-kind">CUSTOMER WORDS</span></div><blockquote>{text}</blockquote><div className="review-source"><span className="source-icon">G</span><span>Customer feedback<small>Shared with Nora Home Service Spa</small></span><Check size={15} className="review-check"/></div></article>)}</div>;
+ return <div className="review-grid">{list.map((review, i) => <article className="review-card" key={review.name} data-reveal style={{'--delay': `${(i % 3) * 90}ms`}}><div className="review-top"><span className="quote-mark">“</span><span className="review-stars" aria-label={`${review.rating} out of 5 stars`}>{'★'.repeat(review.rating)}</span></div><blockquote>{review.text}</blockquote><div className="review-source"><span className="source-icon">G</span><span><strong>{review.name}</strong><small>Google customer review</small></span><Check size={15} className="review-check"/></div></article>)}</div>;
 }
 
 const serviceCards = [
@@ -156,7 +156,7 @@ function Services() {
 
 function Reviews() {
  usePageEffects('Customer Reviews | Nora Home Service Spa', 'Read customer feedback shared about Nora Home Service Spa.');
- return <main><PageHero kicker="KIND WORDS" title={<>Experiences,<br/><em>in their words.</em></>} text="Customer feedback shared after time spent with Nora Home Service Spa." image="/images/spa-hero.jpg" alt="A warm, peaceful home spa setting with a massage table and gentle candlelight"/><section className="reviews-page section-pad"><div className="wrap"><div className="reviews-intro"><SectionHeading eyebrow="CUSTOMER FEEDBACK" title="Trusted by customers who value quality care.">These words have been shared by Nora Home Service Spa customers. We’re grateful for every kind note.</SectionHeading><div className="google-note"><span className="google-letter">G</span><span>Customer reviews<small>Shared feedback</small></span></div></div><ReviewCards/><div className="review-footnote">Customer feedback reproduced as shared. No rating or review count is displayed.</div></div></section><CTASection compact/></main>;
+ return <main><PageHero kicker="KIND WORDS" title={<>Experiences,<br/><em>in their words.</em></>} text="Customer feedback shared after time spent with Nora Home Service Spa." image="/images/spa-hero.jpg" alt="A warm, peaceful home spa setting with a massage table and gentle candlelight"/><section className="reviews-page section-pad"><div className="wrap"><div className="reviews-intro"><SectionHeading eyebrow="CUSTOMER FEEDBACK" title="Trusted by customers who value quality care.">These words have been shared by Nora Home Service Spa customers. We’re grateful for every kind note.</SectionHeading><div className="google-note"><span className="google-letter">G</span><span>Customer reviews<small>Shared feedback</small></span></div></div><ReviewCards/><div className="review-footnote">Reviewer names and individual star ratings are shown as visible in the supplied Google review screenshots. No overall Google rating or review count is displayed.</div></div></section><CTASection compact/></main>;
 }
 
 function BookingForm() {
