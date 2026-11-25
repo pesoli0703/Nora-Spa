@@ -58,7 +58,7 @@ function Header() {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
   const nav = [['Home', '/'], ['About', '/about'], ['Services', '/services'], ['Reviews', '/reviews'], ['Contact', '/contact']];
-  return <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
+  return <header className={`site-header ${scrolled ? 'is-scrolled' : ''} ${open ? 'menu-active' : ''}`}>
     <div className="header-inner">
       <Link to="/" className="brand" aria-label="Nora Home Service Spa home"><span className="brand-mark">N<span>.</span></span><span className="brand-copy"><strong>Nora</strong><small>HOME SERVICE SPA</small></span></Link>
       <nav className="desktop-nav" aria-label="Main navigation">{nav.map(([label, path]) => <NavLink key={path} to={path} end={path === '/'}>{label}</NavLink>)}</nav>
